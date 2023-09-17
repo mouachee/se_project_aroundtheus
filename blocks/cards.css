@@ -32,7 +32,6 @@
   justify-content: space-between;
 }
 .card__title {
-  display: flex;
   max-width: 219px;
   font-family: "inter", Arial, sans-serif;
   font-weight: 900;
