@@ -5,3 +5,68 @@
 @import url(../blocks/profile.css);
 @import url(../blocks/cards.css);
 @import url(../blocks/footer.css);
+@media screen and (min-width: 320px) and (max-width: 520px) {
+  .header {
+    max-width: 320px;
+    margin-top: 28px;
+    margin-bottom: 42px;
+    padding: 0;
+  }
+  .header__logo {
+    width: 126px;
+    height: 24px;
+    padding: 0 167px 32px 27px;
+  }
+  .profile {
+    flex-direction: column;
+    margin: 0 19px 0;
+    max-width: 282px;
+  }
+  .profile__avator {
+    margin: 0;
+  }
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 282px;
+    justify-content: center;
+    margin-bottom: 36px;
+    margin-top: 30px;
+  }
+  .profile__title {
+    max-width: 196px;
+    font-size: 22px;
+    margin: 0;
+    line-height: 26.63px;
+  }
+  .profile__description {
+    width: 100%;
+    max-width: 282px;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+  }
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin: 4px 15px 14px 10px;
+  }
+  .profile__add-button {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+  }
+  .cards {
+    margin-top: 36px;
+  }
+  .footer {
+    margin-top: 48px;
+    margin-bottom: 36px;
+    max-width: 282px;
+  }
+  .footer__copyright {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
+}

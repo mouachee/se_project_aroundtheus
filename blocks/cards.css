@@ -14,7 +14,6 @@
   display: flex;
   flex-direction: column;
   list-style: none;
-  position: relative;
   max-width: 282px;
   overflow: hidden;
   border-radius: 10px;
@@ -35,12 +34,14 @@
 .card__title {
   display: flex;
   max-width: 219px;
-  font-family: "inter", Arial, Sans-serif;
+  font-family: "inter", Arial, sans-serif;
   font-weight: 900;
   font-size: 24px;
-  line-height: 29.05px;
-  color: #000;
+  line-height: normal;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card__like-button {
   background: transparent url(../images/Group.svg) center no-repeat;
