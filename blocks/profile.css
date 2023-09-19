@@ -16,7 +16,6 @@
   grid-template-areas:
     "title button"
     "description description";
-  grid-template-columns: minmax(auto, 373px) auto;
   max-width: 415px;
   margin: 22px 0 21px;
 }
@@ -28,6 +27,9 @@
   margin: 0;
   max-width: 373px;
   line-height: 48px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__description {
   grid-area: description;
@@ -36,6 +38,10 @@
   font-weight: 400;
   font-size: 18px;
   line-height: normal;
+  max-width: 373px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .profile__edit-button {
   background: transparent url(../images/Edit\ Button-2.svg) center no-repeat;
@@ -44,6 +50,8 @@
   grid-area: button;
   margin: 15px 0 0 18px;
   border: 1px solid white;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 .profile__add-button {
   background: transparent url(../images/Vector.svg) center no-repeat;
@@ -52,4 +60,12 @@
   border: 2px solid white;
   border-radius: 2px;
   margin-left: auto;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+.profile__add-button:hover {
+  opacity: 0.6;
 }
