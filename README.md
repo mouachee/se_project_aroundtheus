@@ -28,4 +28,4 @@ Good luck and have fun!
 
 I plan to use JavaScript for this project to enhance the functionality and interactivity of the website.
 
-- [Link to my project on GitHub](https://github.com/mouachee/se_project_aroundtheus.git)
+- [Link to my project on GitHub](http://127.0.0.1:5500/index.html)
