@@ -6,9 +6,17 @@
   font-family: "inter", Arial, sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 21.78px;
   margin: 0;
   padding: 0;
   color: #545454;
-  max-width: 318px;
+}
+@media screen and (min-width: 320px) and (max-width: 620px) {
+  .footer {
+    margin: 48px 19px 36px;
+  }
+  .footer__copyright {
+    font-size: 14px;
+    line-height: normal;
+    max-width: 282px;
+  }
 }
