@@ -1,0 +1,33 @@
+.button {
+  background-color: #000;
+  color: #fff;
+  border-radius: 2px;
+  width: 358px;
+  height: 50px;
+  margin-top: 48px;
+  border: none;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+.button:hover {
+  opacity: 0.8;
+}
+.button__text {
+  text-align: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 auto;
+  max-width: 109px;
+}
+@media screen and (min-width: 320px) and (max-width: 620px) {
+  .button {
+    width: 238px;
+    height: 46px;
+    margin-top: 45px;
+  }
+  .button__text {
+    font-size: 14px;
+  }
+}
