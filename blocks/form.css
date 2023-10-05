@@ -8,6 +8,8 @@
   color: #000;
   padding: 13.26px 0 13.26px;
   border: none;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
 }
 .form__input:first-child {
   margin-bottom: 29.7px;
