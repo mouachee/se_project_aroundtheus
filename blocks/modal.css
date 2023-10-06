@@ -62,7 +62,7 @@
   margin: 0 auto;
   max-width: 109px;
 }
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 @media screen and (min-width: 320px) and (max-width: 620px) {
