@@ -28,7 +28,6 @@
   position: absolute;
   top: -40px;
   right: -40px;
-  border: none;
   cursor: pointer;
   transition: 0.1s ease;
 }
