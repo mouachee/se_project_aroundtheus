@@ -45,11 +45,12 @@
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </div>
+    <!-- edit modal-->
     <div class="modal" id="profile__edit-modal">
       <div class="modal__container">
         <button class="modal__close" id="modal__close-button"></button>
         <h2 class="modal__heading">Edit profile</h2>
-        <form class="modal__form form" name="profile-form">
+        <form class="modal__form form" name="profile-edit-form">
           <input
             type="text"
             name="title"
@@ -70,9 +71,45 @@
         </form>
       </div>
     </div>
+    <!-- add modal-->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="add-card-close-button"></button>
+        <h2 class="modal__heading">New place</h2>
+        <form class="modal__form form" name="profile-add-form">
+          <input
+            type="text"
+            name="title"
+            id="add-card-title-input"
+            class="form__input"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            name="url"
+            id="add-card-url-input"
+            class="form__input"
+            placeholder="Img URL"
+          />
+          <button class="modal__button" type="submit">
+            <span>Save</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--previewImageModal-->
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__container modal__content_type_image">
+        <button class="modal__close" id="preview-image-close-button"></button>
+        <img src="" alt="" class="modal__popup-image" />
+        <p class="modal__popup-caption"></p>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
+        <button class="card__delete-button" type="button"></button>
         <img src="" alt="" class="card__image" />
+        <p class="image__caption"></p>
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button class="card__like-button" type="button"></button>
