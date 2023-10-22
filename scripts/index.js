@@ -27,7 +27,6 @@ const initialCards = [
   },
 ];
 
-// DOM Elements //
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 
@@ -59,7 +58,6 @@ const previewImageCloseButton = document.getElementById(
 const cardListEl = document.querySelector(".cards__list");
 
 // Modal Controls Functions //
-
 function openPopup(modal) {
   modal.classList.add("modal_opened");
 }

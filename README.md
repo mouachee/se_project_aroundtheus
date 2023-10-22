@@ -28,4 +28,6 @@ Good luck and have fun!
 
 I plan to use JavaScript for this project to enhance the functionality and interactivity of the website.
 
+# I have use some JS to make some functionality for the users interactive.
+
 - [Link to the project page](https://mouachee.github.io/se_project_aroundtheus/)
