@@ -1,3 +1,5 @@
+//Event Listener for the keydown on the entire document.
+document.addEventListener("keydown", handleEscKey);
 // Declarations //
 // Initial cards data//
 const initialCards = [
@@ -36,9 +38,9 @@ const profileEditButton = document.getElementById("profile__edit-button");
 const profileCloseButton = document.getElementById("profile-close-button");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile__title_input");
+const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
-  "#profile__description_input"
+  "#profile-description-input"
 );
 const profileEditForm = document.forms["profile-edit-form"];
 
@@ -60,11 +62,16 @@ const cardListEl = document.querySelector(".cards__list");
 // Modal Controls Functions //
 function openPopup(modal) {
   modal.classList.add("modal_opened");
+
+  modal.addEventListener("click", (evt) => {
+    if (evt.target === modal) {
+      closePopup(modal);
+    }
+  });
 }
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
 }
-// Events Handlers //
 function closeAddCard() {
   closePopup(addCardModal);
 }
@@ -74,6 +81,23 @@ function closePreviewImage() {
 function closeEditProfile() {
   closePopup(profileEditModal);
 }
+function handleEscKey(event) {
+  if (event.key === "Escape") {
+    // Check if the addCardModal is open
+    if (addCardModal.classList.contains("modal_opened")) {
+      closeAddCard();
+    }
+    // Check if the previewImageModal is open
+    if (previewImageModal.classList.contains("modal_opened")) {
+      closePreviewImage();
+    }
+    // Check if the profileEditModal is open
+    if (profileEditModal.classList.contains("modal_opened")) {
+      closeEditProfile();
+    }
+  }
+}
+// Events Handlers //
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
