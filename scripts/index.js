@@ -1,5 +1,3 @@
-//Event Listener for the keydown on the entire document.
-document.addEventListener("keydown", handleEscKey);
 // Declarations //
 // Initial cards data//
 const initialCards = [
@@ -58,18 +56,23 @@ const previewImageCloseButton = document.getElementById(
   "preview-image-close-button"
 );
 const cardListEl = document.querySelector(".cards__list");
-
+const modalImageEl = previewImageModal.querySelector(".modal__popup-image");
+const modalCaptionEl = previewImageModal.querySelector(".modal__popup-caption");
 // Modal Controls Functions //
-function openPopup(modal) {
-  modal.classList.add("modal_opened");
-
-  modal.addEventListener("click", (evt) => {
-    if (evt.target === modal) {
-      closePopup(modal);
+function handleEscKey(evt) {
+  if (evt.key === "Escape") {
+    const currentOpenedPopup = document.querySelector(".modal_opened");
+    if (currentOpenedPopup) {
+      closePopup(currentOpenedPopup);
     }
-  });
+  }
+}
+function openPopup(modal) {
+  document.addEventListener("keydown", handleEscKey);
+  modal.classList.add("modal_opened");
 }
 function closePopup(modal) {
+  document.removeEventListener("keydown", handleEscKey);
   modal.classList.remove("modal_opened");
 }
 function closeAddCard() {
@@ -80,22 +83,6 @@ function closePreviewImage() {
 }
 function closeEditProfile() {
   closePopup(profileEditModal);
-}
-function handleEscKey(event) {
-  if (event.key === "Escape") {
-    // Check if the addCardModal is open
-    if (addCardModal.classList.contains("modal_opened")) {
-      closeAddCard();
-    }
-    // Check if the previewImageModal is open
-    if (previewImageModal.classList.contains("modal_opened")) {
-      closePreviewImage();
-    }
-    // Check if the profileEditModal is open
-    if (profileEditModal.classList.contains("modal_opened")) {
-      closeEditProfile();
-    }
-  }
 }
 // Events Handlers //
 function handleProfileEditSubmit(e) {
@@ -127,10 +114,6 @@ function getCardElement(cardData) {
 
   // Events Listeners for card Elements
   cardImageEl.addEventListener("click", () => {
-    const modalImageEl = previewImageModal.querySelector(".modal__popup-image");
-    const modalCaptionEl = previewImageModal.querySelector(
-      ".modal__popup-caption"
-    );
     modalImageEl.src = cardData.link;
     modalImageEl.alt = cardData.name;
     modalCaptionEl.textContent = cardData.name;
@@ -159,7 +142,17 @@ previewImageCloseButton.addEventListener("click", closePreviewImage);
 profileCloseButton.addEventListener("click", closeEditProfile);
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
-
+const modals = document.querySelectorAll(".modal");
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("modal_opened")) {
+      closePopup(modal);
+    }
+    if (evt.target.classList.contains("modal__close")) {
+      closePopup(modal);
+    }
+  });
+});
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 addCardButton.addEventListener("click", () => {
