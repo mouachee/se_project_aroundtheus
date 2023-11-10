@@ -139,6 +139,7 @@ profileEditButton.addEventListener("click", () => {
 });
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
+// Combine closing overlay and close buttons popup
 const modals = document.querySelectorAll(".modal");
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
