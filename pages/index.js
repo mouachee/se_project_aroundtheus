@@ -1,3 +1,4 @@
+import FormValidator from "../components/FormValidator.js";
 // Declarations //
 // Initial cards data//
 const initialCards = [
@@ -58,6 +59,27 @@ const previewImageCloseButton = document.getElementById(
 const cardListEl = document.querySelector(".cards__list");
 const modalImageEl = previewImageModal.querySelector(".modal__popup-image");
 const modalCaptionEl = previewImageModal.querySelector(".modal__popup-caption");
+// Validation
+
+const validationSettings = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible",
+};
+const editFormElement = profileEditModal.querySelector(".modal__form.form");
+const addFormElement = addCardModal.querySelector(".modal__form.form");
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editFormElement
+);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(validationSettings, addFormElement);
+addFormValidator.enableValidation();
+
 // esc key function
 function handleEscKey(evt) {
   if (evt.key === "Escape") {
@@ -156,4 +178,3 @@ initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 addCardButton.addEventListener("click", () => {
   openPopup(addCardModal);
 });
-addCardCloseButton.addEventListener("click", closeAddCard);

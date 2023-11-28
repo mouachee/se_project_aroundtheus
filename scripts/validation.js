@@ -22,8 +22,8 @@ function checkInputValidity(formEl, inputEl, options) {
   }
 }
 // check if all input are valid for the submit button
-function hasInvalidInput(inputList) {
-  return !inputList.every((inputEl) => inputEl.validity.valid);
+function hasInvalidInput(inputEls) {
+  return !inputEls.every((inputEl) => inputEl.validity.valid);
 }
 // disable function
 function disableButton(buttonEl, { inactiveButtonClass }) {
