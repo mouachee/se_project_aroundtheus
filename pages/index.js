@@ -126,8 +126,14 @@ function handleAddCardSubmit(evt) {
 
 //function to render a card
 function renderCard(cardData, wrapper) {
-  const card = new Card(cardData, cardSelector);
+  const card = new Card(cardData, cardSelector, handleImageClick);
   wrapper.prepend(card.getView());
+}
+function handleImageClick() {
+  modalImageEl.src = this._link;
+  modalImageEl.alt = `Image${this._name}`;
+  modalCaptionEl.textContent = this._name;
+  openPopup(previewImageModal);
 }
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);

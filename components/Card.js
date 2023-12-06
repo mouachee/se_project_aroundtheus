@@ -1,23 +1,9 @@
-const previewImageModal = document.getElementById("preview-image-modal");
-const modalImageEl = previewImageModal.querySelector(".modal__popup-image");
-const modalCaptionEl = previewImageModal.querySelector(".modal__popup-caption");
-function handleEscKey(evt) {
-  if (evt.key === "Escape") {
-    const currentOpenedPopup = document.querySelector(".modal_opened");
-    if (currentOpenedPopup) {
-      closePopup(currentOpenedPopup);
-    }
-  }
-}
-function closePopup(modal) {
-  document.removeEventListener("keydown", handleEscKey);
-  previewImageModal.classList.remove("modal_opened");
-}
 class Card {
-  constructor(cardData, cardSelector) {
+  constructor(cardData, cardSelector, handleImageClick) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
+    this._handleImageClick = handleImageClick;
   }
   _getTemplate() {
     return document
@@ -26,10 +12,7 @@ class Card {
       .cloneNode(true);
   }
   _handlePreviewPicture() {
-    modalImageEl.src = this._link;
-    modalImageEl.alt = `Image${this._name}`;
-    modalCaptionEl.textContent = this._name;
-    openPopup(previewImageModal);
+    this._handleImageClick();
   }
   _handleLike() {
     this._element
