@@ -30,4 +30,6 @@ I plan to use JavaScript for this project to enhance the functionality and inter
 
 # I have use some JS to make some functionality for the users interactive.
 
+# using modules break the code in different files and make it easier to manage.
+
 - [Link to the project page](https://mouachee.github.io/se_project_aroundtheus/)

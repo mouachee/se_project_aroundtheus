@@ -5,6 +5,7 @@ class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
   }
+  // Clone the card template and its card content //
   _getTemplate() {
     return document
       .querySelector(this._cardSelector)
@@ -40,11 +41,11 @@ class Card {
         this._handlePreviewPicture();
       });
   }
+  // Get the view of the images and titles //
   getView() {
     this._element = this._getTemplate();
-    this._element.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url(${this._link})`;
+    this._element.querySelector(".card__image").src = this._link;
+    this._element.querySelector(".card__image").alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
     this._setEventListeners();
 
