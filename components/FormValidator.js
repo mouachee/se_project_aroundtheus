@@ -1,5 +1,5 @@
 class FormValidator {
-  constructor(formEl, settings) {
+  constructor(settings, formEl) {
     this._inputSelector = settings.inputSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inactiveButtonClass = settings.inactiveButtonClass;
@@ -21,36 +21,36 @@ class FormValidator {
   }
   _checkInputValidity(inputEl) {
     if (!inputEl.validity.valid) {
-      this._showInputError(this._form, inputEl);
+      this._showInputError(inputEl);
     } else {
-      this._hideInputError(this._form, inputEl);
+      this._hideInputError(inputEl);
     }
   }
-  _hasInvalidInput(inputEls) {
-    return !inputEls.every((inputEl) => inputEl.validity.valid);
+  _hasInvalidInput() {
+    return !this._inputEls.every((inputEl) => inputEl.validity.valid);
   }
-  _disableButton(buttonEl) {
-    buttonEl.classList.add(this._inactiveButtonClass);
-    buttonEl.disabled = true;
+  _disableButton() {
+    this._buttonEl.classList.add(this._inactiveButtonClass);
+    this._buttonEl.disabled = true;
   }
   _enableButton() {
-    buttonEl.classList.remove(this._inactiveButtonClass);
-    buttonEl.disabled = false;
+    this._buttonEl.classList.remove(this._inactiveButtonClass);
+    this._buttonEl.disabled = false;
   }
 
-  _toggleButtonState(inputEls, buttonEl) {
-    if (this._hasInvalidInput(inputEls)) {
-      this._disableButton(buttonEl, this._inactiveButtonClass);
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
+      this._disableButton();
     } else {
-      this._enableButton(buttonEl, this._inactiveButtonClass);
+      this._enableButton();
     }
   }
 
   _setEventListeners() {
-    inputEls = [...this._form.querySelectorAll(this._inputSelector)];
-    buttonEl = this._form.querySelector(this._submitButtonSelector);
+    this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
+    this._buttonEl = this._form.querySelector(this._submitButtonSelector);
 
-    inputEls.forEach((inputEl) => {
+    this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", (e) => {
         this._checkInputValidity(inputEl);
         this._toggleButtonState();

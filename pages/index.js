@@ -1,4 +1,5 @@
 import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 // Declarations //
 // Initial cards data//
 const initialCards = [
@@ -60,7 +61,7 @@ const cardListEl = document.querySelector(".cards__list");
 const modalImageEl = previewImageModal.querySelector(".modal__popup-image");
 const modalCaptionEl = previewImageModal.querySelector(".modal__popup-caption");
 // Validation
-
+const cardSelector = "#card-template";
 const validationSettings = {
   inputSelector: ".form__input",
   submitButtonSelector: ".modal__button",
@@ -125,8 +126,8 @@ function handleAddCardSubmit(evt) {
 
 //function to render a card
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+  const card = new Card(cardData, cardSelector);
+  wrapper.prepend(card.getView());
 }
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
