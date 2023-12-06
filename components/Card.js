@@ -18,7 +18,6 @@ class Card {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
-    console.log(this);
   }
   _getTemplate() {
     return document
@@ -59,7 +58,7 @@ class Card {
       });
   }
   getView() {
-    this.element = this._getTemplate();
+    this._element = this._getTemplate();
     this._element.querySelector(
       ".card__image"
     ).style.backgroundImage = `url(${this._link})`;
