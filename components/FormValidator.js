@@ -45,6 +45,9 @@ class FormValidator {
       this._enableButton();
     }
   }
+  toggleButtonState() {
+    this._toggleButtonState();
+  }
 
   _setEventListeners() {
     this._inputEls = [...this._form.querySelectorAll(this._inputSelector)];
@@ -64,11 +67,11 @@ class FormValidator {
     this._setEventListeners();
   }
   resetValidation() {
+    this._form.reset();
+    this._toggleButtonState();
     this._inputEls.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });
-    this._toggleButtonState();
-    this._form.reset();
   }
 }
 

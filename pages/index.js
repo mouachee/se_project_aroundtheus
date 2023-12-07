@@ -139,6 +139,9 @@ function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
+
+  editFormValidator.resetValidation();
+
   closePopup(profileEditModal);
 }
 function handleAddCardSubmit(evt) {
@@ -148,7 +151,7 @@ function handleAddCardSubmit(evt) {
   renderCard({ name, link }, cardListEl);
   evt.target.reset();
   closeAddCard();
-  addFormValidator._toggleButtonState(); // disabled the button after adding a new card //
+  addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
 
 //function to render a card
