@@ -69,16 +69,14 @@ const validationSettings = {
   inputErrorClass: "form__input_type_error",
   errorClass: "form__error_visible",
 };
-const editFormElement = profileEditModal.querySelector(".modal__form.form");
-const addFormElement = addCardModal.querySelector(".modal__form.form");
 
 const editFormValidator = new FormValidator(
   validationSettings,
-  editFormElement
+  profileEditForm
 );
 editFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validationSettings, addFormElement);
+const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
 
 // esc key function
@@ -128,14 +126,13 @@ function handleAddCardSubmit(evt) {
 function renderCard(cardData, wrapper) {
   const card = new Card(cardData, cardSelector, handleImageClick);
   wrapper.prepend(card.getView());
-}
-function handleImageClick() {
-  modalImageEl.src = this._link;
-  modalImageEl.alt = `Image${this._name}`;
-  modalCaptionEl.textContent = this._name;
-  openPopup(previewImageModal);
-}
-function getCardElement(cardData) {
+
+  function handleImageClick() {
+    modalImageEl.src = this._link;
+    modalImageEl.alt = `Image${this._name}`;
+    modalCaptionEl.textContent = this._name;
+    openPopup(previewImageModal);
+  }
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");

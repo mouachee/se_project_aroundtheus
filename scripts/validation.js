@@ -1,4 +1,3 @@
-// enabling validation by calling enableValidation()
 // pass all the settings on call
 // function to show and hide the error message
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
