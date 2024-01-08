@@ -1,5 +1,6 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
+import "../pages/index.css";
 // Declarations //
 // Initial cards data//
 const initialCards = [
