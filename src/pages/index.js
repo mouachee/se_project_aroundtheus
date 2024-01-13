@@ -1,92 +1,62 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import "../pages/index.css";
-// Declarations //
-// Initial cards data//
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
-
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
-
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
+import {
+  initialCards,
+  cardTemplate,
+  cardSelector,
+  validationSettings,
+  profileEditModal,
+  profileEditButton,
+  profileCloseButton,
+  profileTitle,
+  profileDescription,
+  profileTitleInput,
+  profileDescriptionInput,
+  profileEditForm,
+  addCardModal,
+  addCardForm,
+  cardTitleInput,
+  cardUrlInput,
+  addCardButton,
+  addCardCloseButton,
+  previewImageModal,
+  previewImageCloseButton,
+  cardListEl,
+  modalImageEl,
+  modalCaptionEl,
+  modals,
+} from "../utils/constants.js";
 /**
  * =================================================
- *                profile elements
+ *                POPUP
  * =================================================
  */
-const profileEditModal = document.getElementById("profile__edit-modal");
-const profileEditButton = document.getElementById("profile__edit-button");
-const profileCloseButton = document.getElementById("profile-close-button");
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
+const popup = new Popup({});
+const cardSection = new Section(
+  {
+    renderer: (item) => {
+      const cardEl = new Card(item, cardSelector);
+      cardSection.addItems(cardEl.getView());
+    },
+  },
+  cardSelector.cardSection
 );
-const profileEditForm = document.forms["profile-edit-form"];
+cardSection.renderItems(initialCards);
+const popupWithForm = new PopupWithForm("#add-card-modal", () => {});
+const popupWithImage = new PopupWithImage();
+const userInfo = new UserInfo();
 
-/**
- * =================================================
- *                Add cards elements
- * =================================================
- */
-const addCardModal = document.getElementById("add-card-modal");
-const addCardForm = document.forms["add-card-form"];
-const cardTitleInput = addCardForm.querySelector("#add-card-title-input");
-const cardUrlInput = addCardForm.querySelector("#add-card-url-input");
-const addCardButton = document.querySelector("#add__card-button");
-const addCardCloseButton = document.getElementById("add-card-close-button");
-
-/**
- * =================================================
- *                preview Images
- * =================================================
- */
-const previewImageModal = document.getElementById("preview-image-modal");
-const previewImageCloseButton = document.getElementById(
-  "preview-image-close-button"
-);
-const cardListEl = document.querySelector(".cards__list");
-const modalImageEl = previewImageModal.querySelector(".modal__popup-image");
-const modalCaptionEl = previewImageModal.querySelector(".modal__popup-caption");
 /**
  * =================================================
  *                Validation
  * =================================================
  */
-const cardSelector = "#card-template";
-const validationSettings = {
-  inputSelector: ".form__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__error_visible",
-};
-
 const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
@@ -95,7 +65,7 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
-
+/**
 /**
  * =================================================
  *               esc key function
@@ -188,7 +158,6 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
  *  Combine closing overlay and close buttons popup
  * =================================================
  */
-const modals = document.querySelectorAll(".modal");
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("modal_opened")) {
