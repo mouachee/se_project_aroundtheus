@@ -48,7 +48,11 @@ const cardSection = new Section(
   cardSelector.cardSection
 );
 cardSection.renderItems(initialCards);
-const popupWithForm = new PopupWithForm("#add-card-modal", () => {});
+const addPopupForm = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+const editPopupForm = new PopupWithForm(
+  "#profile__edit-modal",
+  handleProfileEditSubmit
+);
 const popupWithImage = new PopupWithImage();
 const userInfo = new UserInfo();
 
