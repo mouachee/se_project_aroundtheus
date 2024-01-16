@@ -97,15 +97,10 @@ function closePopup(modal) {
   document.removeEventListener("keydown", handleEscKey);
   modal.classList.remove("modal__opened");*/
 //}
-function closeAddCard() {
-  addPopupForm.setEventListeners();
-}
-function closePreviewImage() {
-  closePopup(previewImageModal);
-}
-function closeEditProfile() {
-  editPopupForm.setEventListeners();
-}
+/*function closePreviewImage() {
+  closePopup(previewImageModal);*/
+//}
+//function closeEditProfile() {
 /**
  * =================================================
  *                HANDLERS
@@ -126,7 +121,7 @@ function handleAddCardSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   evt.target.reset();
-  closeAddCard();
+  addPopupForm.close();
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
 function handleImageClick(cardData) {
