@@ -7,27 +7,18 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   initialCards,
-  cardTemplate,
   validationSettings,
-  profileEditModal,
   profileEditButton,
-  profileCloseButton,
   profileTitle,
   profileDescription,
   profileTitleInput,
   profileDescriptionInput,
   profileEditForm,
-  addCardModal,
   addCardForm,
   cardTitleInput,
   cardUrlInput,
   addCardButton,
-  addCardCloseButton,
-  previewImageModal,
-  previewImageCloseButton,
   cardListEl,
-  modalImageEl,
-  modalCaptionEl,
   modals,
 } from "../utils/constants.js";
 /**
@@ -55,7 +46,7 @@ editPopupForm.setEventListeners();
 
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
-const userInfo = new UserInfo({ profileTitle, profileDescription });
+const userInfo = new UserInfo({ profileTitle, profileDescription }); //call the existing variables
 
 /**
  * =================================================
@@ -76,7 +67,7 @@ addFormValidator.enableValidation();
  *               ESC KEY FUNCTION
  * =================================================
  */
-function handleEscKey(evt) {
+/*function handleEscKey(evt) {
   if (evt.key === "Escape") {
     const currentOpenedPopup = document.querySelector(".modal__opened");
     if (currentOpenedPopup) {
@@ -106,8 +97,7 @@ function closePopup(modal) {
  *                HANDLERS
  * =================================================
  */
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
+function handleProfileEditSubmit() {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
 
@@ -115,12 +105,11 @@ function handleProfileEditSubmit(e) {
 
   editPopupForm.close();
 }
-function handleAddCardSubmit(evt) {
-  evt.preventDefault();
+function handleAddCardSubmit() {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
-  evt.target.reset();
+  // evt.target.reset();
   addPopupForm.close();
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
@@ -153,8 +142,6 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = profileDescription.textContent;
   editPopupForm.open();
 });
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-addCardForm.addEventListener("submit", handleAddCardSubmit);
 
 /**
  * =================================================

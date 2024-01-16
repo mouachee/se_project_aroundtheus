@@ -16,7 +16,7 @@ class PopupWithForm extends Popup {
     const inputValues = {}; // an object to store all the input values
     this._inputList.forEach((input) => {
       // go through each input in the _inputList which store all the inputs
-      inputValues[input.name] = input.value; //take the name of the input field like (title/description/url)
+      inputValues[input.name] = input.value; //take the name attribute of the input field like (title/description/url)
       // and get the value that entered from the users and store them in the inputValues object
     });
     return inputValues; //it return back all the name and values to the inputValues object
