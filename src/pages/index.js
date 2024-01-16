@@ -53,7 +53,7 @@ const editPopupForm = new PopupWithForm(
 );
 editPopupForm.setEventListeners();
 
-const popupWithImage = new PopupWithImage("#modal__popup-image");
+const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
 //const userInfo = new UserInfo();
 
@@ -104,11 +104,11 @@ function closePreviewImage() {
   closePopup(previewImageModal);
 }
 function closeEditProfile() {
-  editPopupForm.setEventListeners;
+  editPopupForm.setEventListeners();
 }
 /**
  * =================================================
- *                SUBMIT HANDLERS
+ *                HANDLERS
  * =================================================
  */
 function handleProfileEditSubmit(e) {
@@ -129,7 +129,7 @@ function handleAddCardSubmit(evt) {
   closeAddCard();
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
-function handleImageClick() {
+function handleImageClick(cardData) {
   popupWithImage.open(cardData.link, cardData.name);
   /* modalImageEl.src = this._link;
   modalImageEl.alt = `Image${this._name}`;
@@ -139,7 +139,9 @@ function handleImageClick() {
 
 //function to render a card
 function createCard(cardData) {
-  const cardEl = new Card(cardData, "#card-template", handleImageClick);
+  const cardEl = new Card(cardData, "#card-template", () =>
+    handleImageClick(cardData)
+  );
   return cardEl.getView();
 }
 function renderCard(cardData, wrapper) {
