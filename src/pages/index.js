@@ -53,7 +53,8 @@ const editPopupForm = new PopupWithForm(
 );
 editPopupForm.setEventListeners();
 
-const popupWithImage = new PopupWithImage();
+const popupWithImage = new PopupWithImage("#modal__popup-image");
+popupWithImage.setEventListeners();
 //const userInfo = new UserInfo();
 
 /**
@@ -129,10 +130,11 @@ function handleAddCardSubmit(evt) {
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
 function handleImageClick() {
-  modalImageEl.src = this._link;
+  popupWithImage.open(cardData.link, cardData.name);
+  /* modalImageEl.src = this._link;
   modalImageEl.alt = `Image${this._name}`;
-  modalCaptionEl.textContent = this._name;
-  openPopup(previewImageModal);
+  modalCaptionEl.textContent = this._name; */
+  // openPopup(previewImageModal);
 }
 
 //function to render a card
