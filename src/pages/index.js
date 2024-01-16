@@ -108,7 +108,7 @@ function handleProfileEditSubmit() {
 function handleAddCardSubmit() {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
-  renderCard({ name, link }, cardListEl);
+  //renderCard({ name, link }, cardListEl);
   // evt.target.reset();
   addPopupForm.close();
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
@@ -121,16 +121,16 @@ function handleImageClick(cardData) {
   // openPopup(previewImageModal);
 }
 
-//function to render a card
+//FUNCTION TO RENDER CARD
 function createCard(cardData) {
   const cardEl = new Card(cardData, "#card-template", () =>
     handleImageClick(cardData)
   );
   return cardEl.getView();
 }
-function renderCard(cardData, wrapper) {
+/*function renderCard(cardData) {
   const card = createCard(cardData);
-  wrapper.prepend(card);
+  //wrapper.prepend(card);
 }
 /**
  * =================================================
@@ -148,7 +148,7 @@ profileEditButton.addEventListener("click", () => {
  *  COMBINE OVERLAY/BUTTON CLOSE
  * =================================================
  */
-modals.forEach((modal) => {
+/*modals.forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("modal_opened")) {
       close(modal);
@@ -157,8 +157,8 @@ modals.forEach((modal) => {
       close(modal);
     }
   });
-});
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+});*/
+//initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 addCardButton.addEventListener("click", () => {
   addPopupForm.open();

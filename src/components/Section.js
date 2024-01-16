@@ -12,8 +12,8 @@ export default class Section {
       this._renderer(item);
     });
   }
-  addItems(element) {
+  addItems(card) {
     //method to add new card to the beginning of the section
-    this._element.prepend(element);
+    this._element.prepend(card);
   }
 }
