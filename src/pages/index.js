@@ -55,7 +55,7 @@ editPopupForm.setEventListeners();
 
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
-//const userInfo = new UserInfo();
+const userInfo = new UserInfo({ profileTitle, profileDescription });
 
 /**
  * =================================================
@@ -89,14 +89,14 @@ function handleEscKey(evt) {
  *                CLOSE/OPEN FUNCTION
  * =================================================
  */
-function openPopup(modal) {
+/*function openPopup(modal) {
   document.addEventListener("keydown", handleEscKey);
   modal.classList.add("modal__opened");
 }
 function closePopup(modal) {
   document.removeEventListener("keydown", handleEscKey);
-  modal.classList.remove("modal__opened");
-}
+  modal.classList.remove("modal__opened");*/
+//}
 function closeAddCard() {
   addPopupForm.setEventListeners();
 }
@@ -130,7 +130,7 @@ function handleAddCardSubmit(evt) {
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
 function handleImageClick(cardData) {
-  popupWithImage.open(cardData.link, cardData.name);
+  popupWithImage.open(cardData);
   /* modalImageEl.src = this._link;
   modalImageEl.alt = `Image${this._name}`;
   modalCaptionEl.textContent = this._name; */
@@ -169,10 +169,10 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("modal_opened")) {
-      closePopup(modal);
+      close(modal);
     }
     if (evt.target.classList.contains("modal__close")) {
-      closePopup(modal);
+      close(modal);
     }
   });
 });

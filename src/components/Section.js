@@ -1,9 +1,9 @@
 export default class Section {
-  constructor({ items, renderer }, selector) {
+  constructor({ items, renderer }, containerSelector) {
     // take items and renderer as an object, selector as a string
     this._items = items;
     this._renderer = renderer;
-    this._element = document.querySelector(selector); // find the HTML element using selector/ ".cards__list"
+    this._element = document.querySelector(containerSelector); // find the HTML element using selector/ ".cards__list"
   }
 
   renderItems() {

@@ -9,9 +9,10 @@ class PopupWithImage extends Popup {
     );
   }
   open({ link, name }) {
-    this._popupCaption.textContent = name;
     this._popupImage.src = link;
-    this._popupImage.alt = name;
+    this._popupImage.alt = `Image ${name}`;
+    this._popupCaption.textContent = name;
+
     super.open(); //call the open() from popup to make sure it opens
   }
 }
