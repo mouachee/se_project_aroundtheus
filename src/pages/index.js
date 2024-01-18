@@ -18,12 +18,10 @@ import {
   cardTitleInput,
   cardUrlInput,
   addCardButton,
-  cardListEl,
-  modals,
 } from "../utils/constants.js";
 /**
  * =================================================
- *                POPUP
+ *                INSTANCE CLASS
  * =================================================
  */
 const cardSection = new Section(
@@ -44,16 +42,16 @@ const editPopupForm = new PopupWithForm(
 );
 editPopupForm.setEventListeners();
 
-const popupWithImage = new PopupWithImage("#preview-image-modal");
-popupWithImage.setEventListeners();
 const userInfo = new UserInfo({
   profileNameSelector: profileTitle,
   profileDescriptionSelector: profileDescription,
 }); //call the existing variables
 
+const popupWithImage = new PopupWithImage("#preview-image-modal");
+popupWithImage.setEventListeners();
 /**
  * =================================================
- *                VALIDATION
+ *                FORM VALIDATION
  * =================================================
  */
 const editFormValidator = new FormValidator(
@@ -66,20 +64,17 @@ const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
 /*
  * =================================================
- *                HANDLERS
+ *               FUNCTION HANDLERS
  * =================================================
  */
 function handleProfileEditSubmit(inputValues) {
-  //profileTitle.textContent = profileTitleInput.value;
-  //profileDescription.textContent = profileDescriptionInput.value;
+  //get (inputValues) from popupWithForm
   userInfo.setUserInfo(inputValues);
   editFormValidator.resetValidation();
   editPopupForm.close();
 }
-function handleAddCardSubmit({ link, name }) {
-  //const name = cardTitleInput.value;
-  //const link = cardUrlInput.value;
-  renderCard({ link, name }, cardListEl);
+function handleAddCardSubmit(data) {
+  cardSection.addItems(createCard({ name: data.title, link: data.url }));
   addPopupForm.close();
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
@@ -94,12 +89,8 @@ function createCard(cardData) {
   );
   return cardEl.getView();
 }
-function renderCard(cardData) {
-  const card = createCard(cardData);
-  cardSection.addItems(card);
-  //wrapper.prepend(card);
-}
-/**
+
+/*
  * =================================================
  *                EVENT LISTENERS
  * =================================================
@@ -110,9 +101,6 @@ profileEditButton.addEventListener("click", () => {
   profileDescriptionInput.value = userInformation.userProfileDescription;
   editPopupForm.open();
 });
-
-//initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-
 addCardButton.addEventListener("click", () => {
   addPopupForm.open();
 });

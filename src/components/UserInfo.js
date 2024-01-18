@@ -10,10 +10,10 @@ export default class UserInfo {
       userProfileName: this._profileNameEl.textContent,
       userProfileDescription: this._profileDescriptionEl.textContent,
     };
-  }
-  setUserInfo({ userProfileName, userProfileDescription }) {
-    // method to update the user information on the page
-    this._profileNameEl.textContent = userProfileName;
-    this._profileDescriptionEl.textContent = userProfileDescription;
+  } // method to update the user information on the page
+  setUserInfo({ title, description }) {
+    //use the name attribute to access the value
+    this._profileNameEl.textContent = title;
+    this._profileDescriptionEl.textContent = description;
   }
 }
