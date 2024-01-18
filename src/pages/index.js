@@ -15,8 +15,6 @@ import {
   profileDescriptionInput,
   profileEditForm,
   addCardForm,
-  cardTitleInput,
-  cardUrlInput,
   addCardButton,
 } from "../utils/constants.js";
 /**
