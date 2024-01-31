@@ -5,6 +5,7 @@ import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 import {
   initialCards,
   validationSettings,
@@ -22,6 +23,15 @@ import {
  *                INSTANCE CLASS
  * =================================================
  */
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "8da30a69-e2b6-4647-831a-734ddd50795c",
+    "Content-Type": "application/jsont",
+  },
+});
+api.getCardList().then((res) => console.log(res));
+
 const cardSection = new Section(
   {
     items: initialCards, // start with initialCards
