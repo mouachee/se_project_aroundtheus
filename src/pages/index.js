@@ -26,11 +26,10 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "8da30a69-e2b6-4647-831a-734ddd50795c",
-    "Content-Type": "application/jsont",
+    authorization: "29797379-9c91-41c6-972b-6035d699f96",
+    "Content-Type": "application/json",
   },
 });
-api.getCardList().then((res) => console.log(res));
 
 const cardSection = new Section(
   {
@@ -39,7 +38,9 @@ const cardSection = new Section(
   }, // use the data to create a card
   ".cards__list" //refer to the (selector) in section class
 );
-cardSection.renderItems(); // call the renderitems() to show the cards on the page
+api.getCardList().then((cards) => {
+  cardSection.renderItems(cards); // call the renderitems() to show the cards on the page
+});
 
 const addPopupForm = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 addPopupForm.setEventListeners(); // call the event listeners from popupWithForm
