@@ -26,7 +26,7 @@ import {
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "29797379-9c91-41c6-972b-6035d699f96",
+    authorization: "beff3ef6-54fc-4029-9809-d6cc7f6fad90",
     "Content-Type": "application/json",
   },
 });
@@ -39,7 +39,14 @@ const cardSection = new Section(
   ".cards__list" //refer to the (selector) in section class
 );
 api.getCardList().then((cards) => {
-  cardSection.renderItems(cards); // call the renderitems() to show the cards on the page
+  cardSection.renderItems(cards);
+});
+
+api.getProfileInfo().then((userData) => {
+  userInfo.setUserInfo({
+    title: userData.name,
+    description: userData.about,
+  });
 });
 
 const addPopupForm = new PopupWithForm("#add-card-modal", handleAddCardSubmit);

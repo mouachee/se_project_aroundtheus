@@ -13,6 +13,7 @@ export default class Api {
 
   getCardList() {
     return fetch(`${this._baseUrl}/cards`, {
+      method: "GET",
       headers: this._headers,
     })
       .then(this.checkResponse)
@@ -20,7 +21,16 @@ export default class Api {
         console.error(err);
       });
   }
-  getUserInfo() {}
+  getProfileInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._headers,
+    })
+      .then(this.checkResponse)
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   updateUserInfo() {}
   updateAvatar() {}
   createCard() {}
