@@ -33,7 +33,20 @@ export default class Api {
   }
   updateUserInfo() {}
   updateAvatar() {}
-  createCard() {}
+  createCard(name, link) {
+    fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    })
+      .then(this.checkResponse)
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   deleteCard() {}
   likeCard() {}
   dislikeCard() {}

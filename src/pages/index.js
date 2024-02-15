@@ -30,16 +30,16 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-const cardSection = new Section(
-  {
-    items: initialCards, // start with initialCards
-    renderer: (cardData) => cardSection.addItems(createCard(cardData)),
-  }, // use the data to create a card
-  ".cards__list" //refer to the (selector) in section class
-);
+let cardSection;
 api.getCardList().then((cards) => {
-  cardSection.renderItems(cards);
+  cardSection = new Section(
+    {
+      items: cards, // start with initialCards
+      renderer: (cardData) => cardSection.addItems(createCard(cardData)),
+    }, // use the data to create a card
+    ".cards__list" //refer to the (selector) in section class
+  );
+  cardSection.renderItems();
 });
 
 api.getProfileInfo().then((userData) => {
@@ -48,7 +48,6 @@ api.getProfileInfo().then((userData) => {
     description: userData.about,
   });
 });
-
 const addPopupForm = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 addPopupForm.setEventListeners(); // call the event listeners from popupWithForm
 
@@ -94,6 +93,7 @@ function handleAddCardSubmit(data) {
   addPopupForm.close();
   addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
 }
+
 function handleImageClick(cardData) {
   popupWithImage.open(cardData);
 }
