@@ -7,7 +7,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import {
-  initialCards,
   validationSettings,
   profileEditButton,
   profileTitle,
@@ -88,16 +87,22 @@ addFormValidator.enableValidation();
  * =================================================
  */
 function handleProfileEditSubmit(inputValues) {
-  //get (inputValues) from popupWithForm
-  userInfo.setUserInfo(inputValues);
-  editFormValidator.resetValidation();
-  editPopupForm.close();
+  api
+    .updateProfileInfo(inputValues)
+    .then((userData) => {
+      userInfo.setUserInfo(userData.title, userData.description);
+      editFormValidator.resetValidation();
+      editPopupForm.close();
+    })
+    .catch((err) => {
+      console.error("error", err);
+    });
 }
 function handleAddCardSubmit(data) {
   api
-    .createCard({ name: data.title, link: data.url })
+    .addCard({ name: data.title, link: data.url })
     .then((newCard) => {
-      cardSection.addItems(newCard);
+      cardSection.addItems(createCard(newCard));
       addPopupForm.close();
       addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
     })

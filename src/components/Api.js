@@ -23,9 +23,18 @@ export default class Api {
       headers: this._headers,
     }).then(this.checkResponse);
   }
-  updateUserInfo() {}
+  updateProfileInfo({ title, description }) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: title,
+        about: description,
+      }),
+    }).then(this.checkResponse);
+  }
   updateAvatar() {}
-  createCard(name, link) {
+  addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
