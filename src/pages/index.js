@@ -31,16 +31,21 @@ const api = new Api({
   },
 });
 let cardSection;
-api.getCardList().then((cards) => {
-  cardSection = new Section(
-    {
-      items: cards, // start with initialCards
-      renderer: (cardData) => cardSection.addItems(createCard(cardData)),
-    }, // use the data to create a card
-    ".cards__list" //refer to the (selector) in section class
-  );
-  cardSection.renderItems();
-});
+api
+  .getCardList()
+  .then((cards) => {
+    cardSection = new Section(
+      {
+        items: cards, // start with initialCards
+        renderer: (cardData) => cardSection.addItems(createCard(cardData)),
+      }, // use the data to create a card
+      ".cards__list" //refer to the (selector) in section class
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 api.getProfileInfo().then((userData) => {
   userInfo.setUserInfo({
@@ -89,9 +94,16 @@ function handleProfileEditSubmit(inputValues) {
   editPopupForm.close();
 }
 function handleAddCardSubmit(data) {
-  cardSection.addItems(createCard({ name: data.title, link: data.url }));
-  addPopupForm.close();
-  addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
+  api
+    .createCard({ name: data.title, link: data.url })
+    .then((newCard) => {
+      cardSection.addItems(newCard);
+      addPopupForm.close();
+      addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
+    })
+    .catch((err) => {
+      console.error("error", err);
+    });
 }
 
 function handleImageClick(cardData) {

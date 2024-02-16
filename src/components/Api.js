@@ -15,37 +15,25 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this.checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this.checkResponse);
   }
   getProfileInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this.checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this.checkResponse);
   }
   updateUserInfo() {}
   updateAvatar() {}
   createCard(name, link) {
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name,
         link,
       }),
-    })
-      .then(this.checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this.checkResponse);
   }
   deleteCard() {}
   likeCard() {}
