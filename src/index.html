@@ -126,9 +126,36 @@
         <p class="modal__popup-caption"></p>
       </div>
     </div>
+    <!--DELETE POPUP-->
+    <div class="modal" id="delete-popup-modal">
+      <div class="modal__container modal__container_type_delete">
+        <button
+          class="modal__close"
+          id="delete-popup-closeBtn"
+          type="button"
+        ></button>
+        <h2 class="modal__heading-delete">Are you sure?</h2>
+        <form
+          class="modal__form form form_type_delete"
+          name="delete-button-form"
+        >
+          <button
+            class="modal__button modal__button_type_delete"
+            id="delete-button-confirm"
+            type="submit"
+          >
+            <span>Yes</span>
+          </button>
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
-        <button class="card__delete-button" type="button"></button>
+        <button
+          class="card__delete-button"
+          id="card-delete-button"
+          type="button"
+        ></button>
         <img src="#" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>

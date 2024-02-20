@@ -3,6 +3,10 @@
   flex-direction: column;
   margin: 54px 36px 36.51px;
 }
+.form_type_delete {
+  margin-top: 38px;
+  margin-bottom: 0;
+}
 .form__input {
   max-width: 358px;
   color: #000;

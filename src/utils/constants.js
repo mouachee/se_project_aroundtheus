@@ -91,3 +91,9 @@ export const modalCaptionEl = previewImageModal.querySelector(
   ".modal__popup-caption"
 );
 export const modals = document.querySelectorAll(".modal");
+
+// DELETE POPUP
+export const deleteBtn = document.querySelector("#card-delete-button");
+export const deleteBtnModal = document.getElementById("delete-popup-modal");
+export const deleteBtnClose = document.getElementById("delete-popup-closeBtn");
+export const deleteBtnForm = document.forms["delete-button-form"];

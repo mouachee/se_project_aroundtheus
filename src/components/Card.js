@@ -1,9 +1,13 @@
+import { data } from "jquery";
+
 class Card {
-  constructor(cardData, cardSelector, handleImageClick) {
+  constructor(cardData, cardSelector, handleImageClick, handleDeleteClick) {
     this._name = cardData.name;
     this._link = cardData.link;
+    this._id = cardData._id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
   // Clone the card template and its card content //
   _getTemplate() {
@@ -18,7 +22,7 @@ class Card {
   _handleLike() {
     this._likeButton.classList.toggle("card__like-button_active");
   }
-  _handleDelete() {
+  handleDelete() {
     this._element.remove();
     this._element = null;
   }
@@ -27,7 +31,7 @@ class Card {
       this._handleLike();
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDelete();
+      this._handleDeleteClick(this._id);
     });
     this._cardImage.addEventListener("click", () => {
       this._handlePreviewPicture();

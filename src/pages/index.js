@@ -6,6 +6,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import {
   validationSettings,
   profileEditButton,
@@ -17,11 +18,8 @@ import {
   addCardForm,
   addCardButton,
 } from "../utils/constants.js";
-/**
- * =================================================
- *                INSTANCE CLASS
- * =================================================
- */
+
+// API
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -52,6 +50,11 @@ api.getProfileInfo().then((userData) => {
     description: userData.about,
   });
 });
+
+// INSTANCE CLASS
+const popupWithConfirm = new PopupWithConfirm("#delete-popup-modal");
+popupWithConfirm.setEventListeners();
+
 const addPopupForm = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
 addPopupForm.setEventListeners(); // call the event listeners from popupWithForm
 
@@ -60,7 +63,6 @@ const editPopupForm = new PopupWithForm(
   handleProfileEditSubmit
 );
 editPopupForm.setEventListeners();
-
 const userInfo = new UserInfo({
   profileNameSelector: profileTitle,
   profileDescriptionSelector: profileDescription,
@@ -68,11 +70,9 @@ const userInfo = new UserInfo({
 
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
-/**
- * =================================================
- *                FORM VALIDATION
- * =================================================
- */
+
+// FORM VALIDATION
+
 const editFormValidator = new FormValidator(
   validationSettings,
   profileEditForm
@@ -81,16 +81,17 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
-/*
- * =================================================
- *               FUNCTION HANDLERS
- * =================================================
- */
+
+// FUNCTION HANDLERS
+
 function handleProfileEditSubmit(inputValues) {
   api
     .updateProfileInfo(inputValues)
     .then((userData) => {
-      userInfo.setUserInfo(userData.title, userData.description);
+      userInfo.setUserInfo({
+        title: userData.name,
+        description: userData.about,
+      });
       editFormValidator.resetValidation();
       editPopupForm.close();
     })
@@ -107,7 +108,7 @@ function handleAddCardSubmit(data) {
       addFormValidator.toggleButtonState(); // disabled the button after adding a new card //
     })
     .catch((err) => {
-      console.error("error", err);
+      console.error("error add a new card", err);
     });
 }
 
@@ -115,19 +116,33 @@ function handleImageClick(cardData) {
   popupWithImage.open(cardData);
 }
 
+function handleDeleteClick(cardEl) {
+  popupWithConfirm.open();
+  popupWithConfirm.setSubmitAction(() => {
+    api
+      .deleteCard(cardEl._id)
+      .then(() => {
+        cardEl.handleDelete();
+        popupWithConfirm.close();
+      })
+      .catch((err) => {
+        console.error("error delete card", err);
+      });
+  });
+}
 //FUNCTION TO RENDER CARD
+
 function createCard(cardData) {
-  const cardEl = new Card(cardData, "#card-template", () =>
-    handleImageClick(cardData)
+  const cardEl = new Card(
+    cardData,
+    "#card-template",
+    () => handleImageClick(cardData),
+    () => handleDeleteClick(cardData)
   );
   return cardEl.getView();
 }
+// EVENT LISTENERS
 
-/*
- * =================================================
- *                EVENT LISTENERS
- * =================================================
- */
 profileEditButton.addEventListener("click", () => {
   const userInformation = userInfo.getUserInfo();
   profileTitleInput.value = userInformation.userProfileName;

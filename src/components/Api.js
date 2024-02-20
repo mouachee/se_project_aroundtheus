@@ -33,7 +33,6 @@ export default class Api {
       }),
     }).then(this.checkResponse);
   }
-  updateAvatar() {}
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
@@ -44,7 +43,13 @@ export default class Api {
       }),
     }).then(this.checkResponse);
   }
-  deleteCard() {}
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this.checkResponse);
+  }
   likeCard() {}
   dislikeCard() {}
+  updateAvatar() {}
 }
