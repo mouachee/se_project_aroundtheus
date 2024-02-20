@@ -116,17 +116,17 @@ function handleImageClick(cardData) {
   popupWithImage.open(cardData);
 }
 
-function handleDeleteClick(cardEl) {
-  popupWithConfirm.open();
+function handleDeleteClick(cardData) {
+  popupWithConfirm.open(cardData);
   popupWithConfirm.setSubmitAction(() => {
     api
-      .deleteCard(cardEl._id)
+      .deleteCard(cardData._id)
       .then(() => {
-        cardEl.handleDelete();
+        cardData.handleDelete();
         popupWithConfirm.close();
       })
       .catch((err) => {
-        console.error("error delete card", err);
+        console.error("error deleting card", err);
       });
   });
 }

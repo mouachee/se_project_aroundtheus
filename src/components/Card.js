@@ -22,10 +22,12 @@ class Card {
   _handleLike() {
     this._likeButton.classList.toggle("card__like-button_active");
   }
+
   handleDelete() {
     this._element.remove();
     this._element = null;
   }
+
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
       this._handleLike();
@@ -37,6 +39,7 @@ class Card {
       this._handlePreviewPicture();
     });
   }
+
   // Get the view of the images and titles //
   getView() {
     this._element = this._getTemplate();
