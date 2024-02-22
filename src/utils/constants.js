@@ -94,4 +94,5 @@ export const modals = document.querySelectorAll(".modal");
 
 //AVATAR
 export const avatarForm = document.forms["update-avatar-form"];
-export const avatarButton = document.querySelector(".profile__avatar-button");
+export const avatarUrl = avatarForm.querySelector("#update-avatar-url");
+export const avatarButton = document.querySelector("#profile-avatar-button");

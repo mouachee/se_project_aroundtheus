@@ -93,10 +93,25 @@ editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
 
-const AvatarValidator = new FormValidator(validationSettings, avatarForm);
-AvatarValidator.enableValidation();
+const avatarValidator = new FormValidator(validationSettings, avatarForm);
+avatarValidator.enableValidation();
 
 // FUNCTION HANDLERS
+function handleUpdatingAvatar(inputValues) {
+  api
+    .updateAvatar(inputValues)
+    .then((data) => {
+      userInfo.setAvatarImage({
+        avatar: data.avatar,
+      });
+      avatarValidator.resetValidation();
+      avatarForm.close();
+    })
+    .catch((err) => {
+      console.error("error updating profile image");
+    });
+}
+
 function handleProfileEditSubmit(inputValues) {
   api
     .updateProfileInfo(inputValues)
@@ -163,7 +178,6 @@ function handleLikeImage(cardEl) {
         console.error("Failed to dislike");
       });
   }
-  function handleUpdatingAvatar() {}
 }
 //FUNCTION TO RENDER CARD
 

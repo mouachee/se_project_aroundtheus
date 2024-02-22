@@ -21,7 +21,7 @@ export default class UserInfo {
     this._profileNameEl.textContent = title;
     this._profileDescriptionEl.textContent = description;
   }
-  setAvatarImage({ link }) {
-    this._profileAvatarEl.src = link;
+  setAvatarImage({ avatar }) {
+    this._profileAvatarEl.src = avatar;
   }
 }
