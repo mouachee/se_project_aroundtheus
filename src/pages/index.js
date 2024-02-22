@@ -96,6 +96,7 @@ avatarValidator.enableValidation();
 
 // FUNCTION HANDLERS
 function handleUpdatingAvatar(inputValues) {
+  avatarPopupForm.setButtonLoading();
   api
     .updateAvatar(inputValues)
     .then((data) => {
@@ -103,14 +104,18 @@ function handleUpdatingAvatar(inputValues) {
         avatar: data.avatar,
       });
       avatarValidator.resetValidation();
-      avatarForm.close();
+      avatarPopupForm.close();
     })
     .catch((err) => {
       console.error("error updating profile image", err);
+    })
+    .finally(() => {
+      avatarPopupForm.resetButtonLoading();
     });
 }
 
 function handleProfileEditSubmit(inputValues) {
+  editPopupForm.setButtonLoading();
   api
     .updateProfileInfo(inputValues)
     .then((userData) => {
@@ -123,9 +128,13 @@ function handleProfileEditSubmit(inputValues) {
     })
     .catch((err) => {
       console.error("error", err);
+    })
+    .finally(() => {
+      editPopupForm.resetButtonLoading();
     });
 }
 function handleAddCardSubmit(data) {
+  addPopupForm.setButtonLoading();
   api
     .addCard({ name: data.title, link: data.url })
     .then((newCard) => {
@@ -135,6 +144,9 @@ function handleAddCardSubmit(data) {
     })
     .catch((err) => {
       console.error("error add a new card", err);
+    })
+    .finally(() => {
+      addPopupForm.resetButtonLoading();
     });
 }
 
@@ -201,6 +213,6 @@ addCardButton.addEventListener("click", () => {
   addPopupForm.open();
 });
 avatarButton.addEventListener("click", () => {
-  avatarPopupForm.open;
+  avatarPopupForm.open();
 });
 //comment
