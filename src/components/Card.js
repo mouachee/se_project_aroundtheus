@@ -1,5 +1,3 @@
-import { data } from "jquery";
-
 class Card {
   constructor(
     cardData,
