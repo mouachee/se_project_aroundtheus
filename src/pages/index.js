@@ -73,13 +73,11 @@ const avatarPopupForm = new PopupWithForm(
 );
 avatarPopupForm.setEventListeners();
 
-const userInfo = new UserInfo(
-  {
-    profileNameSelector: profileTitle,
-    profileDescriptionSelector: profileDescription,
-  },
-  ".profile__avatar-image"
-);
+const userInfo = new UserInfo({
+  profileNameSelector: profileTitle,
+  profileDescriptionSelector: profileDescription,
+  avatarSelector: ".profile__avatar-image",
+});
 const popupWithImage = new PopupWithImage("#preview-image-modal");
 popupWithImage.setEventListeners();
 
@@ -108,7 +106,7 @@ function handleUpdatingAvatar(inputValues) {
       avatarForm.close();
     })
     .catch((err) => {
-      console.error("error updating profile image");
+      console.error("error updating profile image", err);
     });
 }
 
