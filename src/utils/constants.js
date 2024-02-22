@@ -92,8 +92,6 @@ export const modalCaptionEl = previewImageModal.querySelector(
 );
 export const modals = document.querySelectorAll(".modal");
 
-// DELETE POPUP
-export const deleteBtn = document.querySelector("#card-delete-button");
-export const deleteBtnModal = document.getElementById("delete-popup-modal");
-export const deleteBtnClose = document.getElementById("delete-popup-closeBtn");
-export const deleteBtnForm = document.forms["delete-button-form"];
+//AVATAR
+export const avatarForm = document.forms["update-avatar-form"];
+export const avatarButton = document.querySelector(".profile__avatar-button");

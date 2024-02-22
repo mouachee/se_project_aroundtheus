@@ -49,7 +49,25 @@ export default class Api {
       headers: this._headers,
     }).then(this.checkResponse);
   }
-  likeCard() {}
-  dislikeCard() {}
-  updateAvatar() {}
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this.checkResponse);
+  }
+  dislikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this.checkResponse);
+  }
+  updateAvatar({ link }) {
+    return fetch(`${this._baseUrl}/users/me/${avatar}`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    }).then(this.checkResponse);
+  }
 }

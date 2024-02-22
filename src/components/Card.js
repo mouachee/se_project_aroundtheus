@@ -1,13 +1,21 @@
 import { data } from "jquery";
 
 class Card {
-  constructor(cardData, cardSelector, handleImageClick, handleDeleteClick) {
+  constructor(
+    cardData,
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeImage
+  ) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._id = cardData._id;
+    this.isLiked = cardData.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeImage = handleLikeImage;
   }
   // Clone the card template and its card content //
   _getTemplate() {
@@ -19,8 +27,16 @@ class Card {
   _handlePreviewPicture() {
     this._handleImageClick();
   }
-  _handleLike() {
-    this._likeButton.classList.toggle("card__like-button_active");
+  handleLike(isLiked) {
+    this.isLiked = isLiked;
+    this._renderLikes();
+  }
+  _renderLikes() {
+    if (this.isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
   }
 
   handleDelete() {
@@ -30,10 +46,10 @@ class Card {
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLike();
+      this._handleLikeImage(this);
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteClick(this._id);
+      this._handleDeleteClick(this);
     });
     this._cardImage.addEventListener("click", () => {
       this._handlePreviewPicture();
@@ -53,6 +69,7 @@ class Card {
     this._cardTitle.textContent = this._name;
 
     this._setEventListeners();
+    this._renderLikes();
 
     return this._element;
   }
