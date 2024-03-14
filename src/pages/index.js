@@ -46,15 +46,18 @@ api
     console.error(err);
   });
 
-api.getProfileInfo().then((userData) => {
-  userInfo.setUserInfo({
-    title: userData.name,
-    description: userData.about,
-  });
-  userInfo.setAvatarImage({ avatar: userData.avatar }).catch((err) => {
+api
+  .getProfileInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({
+      title: userData.name,
+      description: userData.about,
+    });
+    userInfo.setAvatarImage({ avatar: userData.avatar });
+  })
+  .catch((err) => {
     console.error(err);
   });
-});
 
 // INSTANCE CLASS
 const popupWithConfirm = new PopupWithConfirm("#delete-popup-modal");
