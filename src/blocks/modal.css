@@ -41,6 +41,26 @@
   font-weight: 900;
   font-size: 24px;
 }
+.modal__container_type_delete {
+  max-width: 430px;
+  max-height: 181px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
+  margin: auto;
+  position: relative;
+  padding: 34px 0 36px;
+}
+.modal__heading-delete {
+  max-width: 358px;
+  flex-shrink: 0;
+  color: #000;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  margin: 0;
+  padding: 0 36px 0;
+}
+
 .modal__button {
   background-color: #000;
   color: #fff;
@@ -51,6 +71,9 @@
   border: none;
   cursor: pointer;
   transition: 0.1s ease;
+}
+.modal__button_type_delete {
+  margin-top: 0;
 }
 .modal__button:hover {
   opacity: 0.8;
@@ -95,6 +118,14 @@
   margin: 0;
   font-size: 12px;
   font-family: "inter", Arial, sans-serif;
+}
+.modal__heading-avatar {
+  max-width: 330px;
+  color: #000;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  margin: 34px 64px 0 36px;
 }
 
 @media screen and (min-width: 320px) and (max-width: 620px) {

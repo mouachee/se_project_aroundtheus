@@ -91,3 +91,8 @@ export const modalCaptionEl = previewImageModal.querySelector(
   ".modal__popup-caption"
 );
 export const modals = document.querySelectorAll(".modal");
+
+//AVATAR
+export const avatarForm = document.forms["update-avatar-form"];
+export const avatarUrl = avatarForm.querySelector("#update-avatar-url");
+export const avatarButton = document.querySelector("#profile-avatar-button");

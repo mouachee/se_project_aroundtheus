@@ -20,11 +20,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Avator"
-            class="profile__avator"
-          />
+          <div class="profile__avatar">
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Avatar"
+              class="profile__avatar-image"
+            />
+            <button
+              class="profile__avatar-button"
+              id="profile-avatar-button"
+              type="button"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -126,9 +133,61 @@
         <p class="modal__popup-caption"></p>
       </div>
     </div>
+    <!--DELETE POPUP-->
+    <div class="modal" id="delete-popup-modal">
+      <div class="modal__container modal__container_type_delete">
+        <button
+          class="modal__close"
+          id="delete-popup-closeBtn"
+          type="button"
+        ></button>
+        <h2 class="modal__heading-delete">Are you sure?</h2>
+        <form
+          class="modal__form form form_type_delete"
+          name="delete-button-form"
+        >
+          <button
+            class="modal__button modal__button_type_delete"
+            id="delete-button-confirm"
+            type="submit"
+          >
+            <span>Yes</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <!--UPDATE AVATAR-->
+    <div class="modal" id="update-avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="avatar-close-button"></button>
+        <h2 class="modal__heading-avatar">Change profile picture</h2>
+        <form class="modal__form form" name="update-avatar-form">
+          <input
+            type="url"
+            name="avatar"
+            id="update-avatar-url"
+            class="form__input"
+            placeholder="Img URL"
+            required
+          />
+          <span class="form__error" id="update-avatar-url-error"></span>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            <span>Save</span>
+          </button>
+        </form>
+      </div>
+    </div>
     <template id="card-template">
       <li class="card">
-        <button class="card__delete-button" type="button"></button>
+        <button
+          class="card__delete-button"
+          id="card-delete-button"
+          type="button"
+        ></button>
         <img src="#" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>

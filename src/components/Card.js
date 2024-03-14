@@ -1,9 +1,19 @@
 class Card {
-  constructor(cardData, cardSelector, handleImageClick) {
+  constructor(
+    cardData,
+    cardSelector,
+    handleImageClick,
+    handleDeleteClick,
+    handleLikeImage
+  ) {
     this._name = cardData.name;
     this._link = cardData.link;
+    this._id = cardData._id;
+    this.isLiked = cardData.isLiked;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeImage = handleLikeImage;
   }
   // Clone the card template and its card content //
   _getTemplate() {
@@ -15,24 +25,35 @@ class Card {
   _handlePreviewPicture() {
     this._handleImageClick();
   }
-  _handleLike() {
-    this._likeButton.classList.toggle("card__like-button_active");
+  handleLike(isLiked) {
+    this.isLiked = isLiked;
+    this._renderLikes();
   }
-  _handleDelete() {
+  _renderLikes() {
+    if (this.isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
+    }
+  }
+
+  handleDelete() {
     this._element.remove();
     this._element = null;
   }
+
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
-      this._handleLike();
+      this._handleLikeImage(this);
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDelete();
+      this._handleDeleteClick(this);
     });
     this._cardImage.addEventListener("click", () => {
       this._handlePreviewPicture();
     });
   }
+
   // Get the view of the images and titles //
   getView() {
     this._element = this._getTemplate();
@@ -46,6 +67,7 @@ class Card {
     this._cardTitle.textContent = this._name;
 
     this._setEventListeners();
+    this._renderLikes();
 
     return this._element;
   }
