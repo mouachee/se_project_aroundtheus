@@ -51,7 +51,9 @@ api.getProfileInfo().then((userData) => {
     title: userData.name,
     description: userData.about,
   });
-  userInfo.setAvatarImage({ avatar: userData.avatar });
+  userInfo.setAvatarImage({ avatar: userData.avatar }).catch((err) => {
+    console.error(err);
+  });
 });
 
 // INSTANCE CLASS
@@ -87,6 +89,7 @@ const editFormValidator = new FormValidator(
   profileEditForm
 );
 editFormValidator.enableValidation();
+editFormValidator.resetValidation();
 
 const addFormValidator = new FormValidator(validationSettings, addCardForm);
 addFormValidator.enableValidation();
@@ -96,7 +99,7 @@ avatarValidator.enableValidation();
 
 // FUNCTION HANDLERS
 function handleUpdatingAvatar(inputValues) {
-  avatarPopupForm.setButtonLoading();
+  avatarPopupForm.renderLoading(true);
   api
     .updateAvatar(inputValues)
     .then((data) => {
@@ -110,12 +113,12 @@ function handleUpdatingAvatar(inputValues) {
       console.error("error updating profile image", err);
     })
     .finally(() => {
-      avatarPopupForm.resetButtonLoading();
+      avatarPopupForm.renderLoading(false);
     });
 }
 
 function handleProfileEditSubmit(inputValues) {
-  editPopupForm.setButtonLoading();
+  editPopupForm.renderLoading(true);
   api
     .updateProfileInfo(inputValues)
     .then((userData) => {
@@ -123,18 +126,18 @@ function handleProfileEditSubmit(inputValues) {
         title: userData.name,
         description: userData.about,
       });
-      editFormValidator.resetValidation();
       editPopupForm.close();
     })
     .catch((err) => {
       console.error("error", err);
     })
     .finally(() => {
-      editPopupForm.resetButtonLoading();
+      editPopupForm.renderLoading(false);
     });
 }
+
 function handleAddCardSubmit(data) {
-  addPopupForm.setButtonLoading();
+  addPopupForm.renderLoading(true);
   api
     .addCard({ name: data.title, link: data.url })
     .then((newCard) => {
@@ -146,7 +149,7 @@ function handleAddCardSubmit(data) {
       console.error("error add a new card", err);
     })
     .finally(() => {
-      addPopupForm.resetButtonLoading();
+      addPopupForm.renderLoading(false);
     });
 }
 

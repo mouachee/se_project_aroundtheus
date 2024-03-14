@@ -8,6 +8,7 @@ class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit; // a callback function pass as an argument
     this._inputList = this._popupForm.querySelectorAll(".form__input");
     this._submitButton = this._popupForm.querySelector(".modal__button");
+    this._submitButtonText = this._submitButton.textContent;
   }
   close() {
     this._popupForm.reset();
@@ -29,11 +30,13 @@ class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValue()); // call the function and give it the values from the form(_getInputValue)
     });
   }
-  setButtonLoading() {
-    this._submitButton.textContent = "Saving...";
-  }
-  resetButtonLoading() {
-    this._submitButton.textContent = "Save";
+
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 }
 export default PopupWithForm;
